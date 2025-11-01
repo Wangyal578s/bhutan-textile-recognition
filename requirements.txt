@@ -1,7 +1,5 @@
-flask
-opencv-python
+Flask
 torch
 torchvision
-numpy
-pillow
 gunicorn
+Pillow
