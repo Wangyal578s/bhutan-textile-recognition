@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+{% block title %}Textile Detection | Bhutan Textile{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bhutanese Textile Recognition</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    .detection-result {
+      margin-top: 15px;
+      font-size: 1.1rem;
+      color: #333;
+      text-align: center;
+      font-weight: 500;
+    }
+    .highlight-textile {
+      color: #d35400;
+      font-weight: 600;
+    }
+    .confidence {
+      color: #16a085;
+      font-weight: 600;
+    }
+    .description-box {
+      margin-top: 10px;
+      padding: 10px 15px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      text-align: left;
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.4;
+    }
+    /* 🔹 Limit the display size of uploaded image / video feed */
+    .video-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f7f7f7;
+      border-radius: 12px;
+      overflow: hidden;
+      padding: 10px;
+      margin-top: 10px;
+    }
+    .video-frame {
+      border-radius: 10px;
+      border: 3px solid #f39c12;
+      max-width: 420px;   /* 🔹 Smaller width */
+      max-height: 320px;  /* 🔹 Prevent tall stretch */
+      object-fit: contain; /* Keeps aspect ratio */
+      background: #fff;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <div class="center-wrapper">
+      <div class="card">
+        <!-- Intro -->
+        <div id="introPanel" class="intro">
+          <h1 class="main-heading">Welcome to Bhutanese Textile Recognition</h1>
+          <div class="button-group">
+            <button id="openCamera" class="btn orange">📷 Open Camera</button>
+            <button id="uploadBtn" class="btn yellow">📁 Upload Image</button>
+            <input type="file" id="imageInput" accept="image/*" hidden>
+          </div>
+        </div>
+
+        <!-- Active Panel -->
+        <div id="activePanel" class="active-panel hidden">
+          <div class="video-container">
+            <img id="videoFeed" src="" alt="Live Camera Feed" class="video-frame">
+          </div>
+
+          <!-- Detection result text -->
+          <div id="resultText" class="detection-result"></div>
+          <div id="descriptionBox" class="description-box hidden"></div>
+
+          <div class="camera-controls">
+            <button id="stopCamera" class="btn red">⏹ Stop Camera</button>
+            <button id="closeUpload" class="btn red hidden">✖ Close & Upload Again</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const openCameraBtn = document.getElementById("openCamera");
+    const uploadBtn = document.getElementById("uploadBtn");
+    const imageInput = document.getElementById("imageInput");
+    const introPanel = document.getElementById("introPanel");
+    const activePanel = document.getElementById("activePanel");
+    const videoFeed = document.getElementById("videoFeed");
+    const stopCameraBtn = document.getElementById("stopCamera");
+    const closeUploadBtn = document.getElementById("closeUpload");
+    const resultText = document.getElementById("resultText");
+    const descriptionBox = document.getElementById("descriptionBox");
+
+    // Open Camera
+    openCameraBtn.onclick = () => {
+      videoFeed.src = "/video_feed";
+      introPanel.classList.add("hidden");
+      activePanel.classList.remove("hidden");
+      stopCameraBtn.classList.remove("hidden");
+      closeUploadBtn.classList.add("hidden");
+      resultText.textContent = "";
+      descriptionBox.classList.add("hidden");
+    };
+
+    // Stop Camera
+    stopCameraBtn.onclick = async () => {
+      await fetch("/stop_camera");
+      videoFeed.src = "";
+      activePanel.classList.add("hidden");
+      introPanel.classList.remove("hidden");
+      resultText.textContent = "";
+      descriptionBox.classList.add("hidden");
+    };
+
+    // Upload Image
+    uploadBtn.onclick = () => imageInput.click();
+
+    imageInput.onchange = async () => {
+  const file = imageInput.files[0];
+  if (!file) return;
+
+  const formData = new FormData();
+  formData.append("image", file);
+
+  introPanel.classList.add("hidden");
+  activePanel.classList.remove("hidden");
+  stopCameraBtn.classList.add("hidden");
+  closeUploadBtn.classList.remove("hidden");
+
+  videoFeed.src = URL.createObjectURL(file);
+  resultText.innerHTML = "<em>Detecting textile...</em>";
+
+  try {
+    const res = await fetch("/predict", { method: "POST", body: formData });
+    const data = await res.json();
+
+    if (data && data.success) {
+      const label = data.label || "Unknown";
+      const conf = (data.confidence * 100).toFixed(1);
+      resultText.innerHTML = `
+        Detected Textile: <span class="highlight-textile">${label}</span><br>
+        Confidence: <span style="color:green;">${conf}%</span>
+      `;
+    } else {
+      resultText.textContent = "No textile detected. Please try another image.";
+    }
+  } catch (err) {
+    console.error(err);
+    resultText.textContent = "Error detecting textile.";
+  }
+};
+
+
+    // Close & Upload Again
+    closeUploadBtn.onclick = () => {
+      videoFeed.src = "";
+      resultText.textContent = "";
+      descriptionBox.classList.add("hidden");
+      activePanel.classList.add("hidden");
+      introPanel.classList.remove("hidden");
+      imageInput.value = "";
+    };
+  </script>
+</body>
+</html>
+{% endblock %}

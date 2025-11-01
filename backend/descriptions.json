@@ -1,0 +1,27 @@
+{
+    "Hotra": {
+      "Significance": "Hotra is a traditional handwoven pattern commonly used in Kira (women’s dress) and Gho (men’s dress). It usually features plain or striped designs in earthy tones, symbolizing simplicity, humility, and daily wear. Often worn for casual or everyday occasions, Hotra reflects the everyday identity of Bhutanese culture.",
+      "Description": "Characterized by parallel stripes, repetitive linear patterns, and low color contrast. Can be used as a baseline pattern for model training due to its simple and consistent geometry."
+    },
+    "Mathra": {
+      "Significance": "One of the most popular traditional patterns in Bhutan. Typically features red, maroon, or burgundy tones with fine checkered or striped textures. Symbolizes elegance, modesty, and national identity. Often used in formal and semi-formal attires.",
+      "Description": "Contains densely packed lines forming symmetrical grids or checks. High textural regularity, useful for feature extraction using Gabor filters or texture descriptors (LBP, HOG)."
+    },
+    "Mentha": {
+      "Significance": "Mentha is known for its vivid colors and decorative weaving styles. Often used in festive or ceremonial wear, especially by women. Represents vibrancy, festivity, and cultural pride.",
+      "Description": "Exhibits complex, multicolored motifs with geometric and floral shapes. Useful for multi-class pattern recognition, since its visual features are highly distinct from plain weaves."
+    },
+    "Pangtsi": {
+      "Significance": "Pangtsi is a striped pattern that alternates between thick and thin bands of color. Represents balance and harmony in Bhutanese tradition. Commonly found in men’s Gho fabrics.",
+      "Description": "Features directional stripe orientation (horizontal/vertical). Helps train models to differentiate orientation and color density. Ideal for testing edge detection and directional texture filters."
+    },
+    "Satra": {
+      "Significance": "Satra fabrics are ornate and richly patterned, often reserved for special ceremonies and high officials. Woven with silk or cotton blend, showcasing fine craftsmanship. Symbolizes status, purity, and cultural heritage.",
+      "Description": "Complex multi-layered motifs and high color contrast. Ideal for deep feature learning using CNNs, since the visual patterns are highly intricate. Can act as a high-complexity class in your recognition dataset."
+    },
+    "other_Kira_samples": {
+      "Significance": "Represents miscellaneous textile samples not belonging to the five main traditional patterns. Useful for broad generalization in textile recognition models.",
+      "Description": "Includes varied weaves and unclassified designs. Serves as a catch-all class for unknown or modern textile types."
+    }
+  }
+  

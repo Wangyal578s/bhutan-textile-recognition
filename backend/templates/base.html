@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Bhutan Textile Project{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Flag" class="flag">
+    <h1 class="nav-title">Bhutan Traditional Textile Recognition</h1>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('home') }}">Home</a></li>
+      <li><a href="{{ url_for('detection') }}">Textile Detection</a></li>
+      <li><a href="{{ url_for('significance') }}">Significance</a></li>
+      <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
+      <li><a href="{{ url_for('contact') }}">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Bhutan Textile Recognition Project | All Rights Reserved
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Significance of Textiles{% endblock %}
+
+{% block content %}
+<div class="center-wrapper">
+  <div class="card significance-page">
+    <h2 class="main-heading">Significance of Bhutanese Textiles</h2>
+    <p class="intro">
+      Bhutanese textiles are more than fabric — they are living expressions of identity, heritage, and artistry.
+      Each weave carries the legacy of generations, representing the region, social status, and even spiritual beliefs
+      of the weaver and wearer.
+    </p>
+
+    <div class="textile-grid">
+      <div class="textile-card">
+        <img src="{{ url_for('static', filename='images/hotra.jpeg') }}" alt="Hotra textile">
+        <h3>Hotra</h3>
+        <p>
+          Hotra textiles are known for their vibrant stripes and intricate color arrangements.
+          Traditionally woven in eastern Bhutan, they symbolize protection and prosperity,
+          often used in ceremonial attire.
+        </p>
+      </div>
+
+      <div class="textile-card">
+        <img src="{{ url_for('static', filename='images/Matra.jpeg') }}" alt="Mathra textile">
+        <h3>Mathra</h3>
+        <p>
+          Mathra weaves are recognized by their deep maroon hues interlaced with fine white or black stripes.
+          They reflect the harmony between spiritual discipline and daily life.
+        </p>
+      </div>
+
+      <div class="textile-card">
+        <img src="{{ url_for('static', filename='images/Mentha.jpeg') }}" alt="Mentha textile">
+        <h3>Mentha</h3>
+        <p>
+          Originating from central Bhutan, Mentha fabrics showcase geometric patterns that represent unity
+          and the interconnectedness of Bhutanese communities.
+        </p>
+      </div>
+
+      <div class="textile-card">
+        <img src="{{ url_for('static', filename='images/pangtsi.jpg') }}" alt="Pangtsi textile">
+        <h3>Pangtsi</h3>
+        <p>
+          Pangtsi textiles are delicate, often featuring soft pastel tones and floral motifs.
+          They are woven to express elegance and purity, frequently used in festive wear.
+        </p>
+      </div>
+
+      <div class="textile-card">
+        <img src="{{ url_for('static', filename='images/saytra.jpeg') }}" alt="Satra textile">
+        <h3>Satra</h3>
+        <p>
+          Satra is characterized by bold designs and symbolic motifs inspired by nature and Buddhist art.
+          It is considered an auspicious fabric for significant religious ceremonies.
+        </p>
+      </div>
+
+      <div class="textile-card">
+        <img src="{{ url_for('static', filename='images/other.jpeg') }}" alt="Other kira samples">
+        <h3>Other Kira Samples</h3>
+        <p>
+          Bhutan’s weaving tradition extends beyond these primary types, each region preserving unique colors,
+          materials, and techniques that contribute to the nation’s vibrant cultural fabric.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

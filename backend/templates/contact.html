@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}About{% endblock %}
+
+{% block content %}
+<div class="center-wrapper">
+  <div class="card about-page">
+    <h2 class="main-heading">About the Project</h2>
+    <p class="intro">
+      The Bhutan Traditional Textile Recognition project is an effort to preserve, identify, and celebrate Bhutan’s 
+      rich textile heritage through the power of computer vision and deep learning.  
+      This initiative aims to bring technology and culture together — honoring artisans while enabling modern digital exploration.
+    </p>
+
+    <h3 class="section-title">Project Team</h3>
+    <div class="team-container">
+      <div class="team-member">
+        <img src="{{ url_for('static', filename='images/sonam.jpeg') }}" alt="Sonam Wangyal Tshewang" class="team-photo">
+        <h4>Sonam Wangyal Tshewang</h4>
+        <p>
+          Project Leader & Developer  
+          <br>
+          Passionate about blending technology with Bhutanese culture, Sonam led the research, data collection, and neural network development.
+        </p>
+      </div>
+
+      <div class="team-member">
+        <img src="{{ url_for('static', filename='images/Ganga.jpeg') }}" alt="Ganga Mongar" class="team-photo">
+        <h4>Ganga Mongar</h4>
+        <p>
+          Research & Design Contributor  
+          <br>
+          Assisted with textile documentation, data annotation, and interface design to make the project accessible and culturally grounded.
+        </p>
+      </div>
+    </div>
+
+    <h3 class="section-title">📞 Contact Information</h3>
+    <div class="contact-info">
+      <p class="contact-info">
+        <strong>✉️ Email:</strong>
+        <a href="mailto:sonamwangyel21@gmail.com">sonamwangyel21@gmail.com</a> /
+        <a href="mailto:gmongarganga469@gmail.com">gmongarganga469@gmail.com</a><br>
+      
+        <strong>📞 Phone:</strong> +975 17495395/17816185<br>
+      
+        <strong>📍 Location:</strong> Sherubtse, Trashigang, Bhutan
+      </p>
+      
+      
+    </div>
+  </div>
+</div>
+{% endblock %}

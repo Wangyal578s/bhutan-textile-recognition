@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Textile Gallery{% endblock %}
+
+{% block content %}
+<div class="center-wrapper">
+  <div class="card gallery-page">
+    <h2 class="main-heading">Bhutanese Textile Gallery</h2>
+    <p class="intro">Explore Bhutan’s vibrant handwoven textiles, each representing a distinct regional tradition and story.</p>
+
+    <div class="gallery-grid">
+      {% for item in textiles %}
+      <div class="gallery-item">
+        <a href="{{ url_for('static', filename=item.image) }}" target="_blank">
+          <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.name }}">
+        </a>
+        <h4>{{ item.name }}</h4>
+        <p>{{ item.caption }}</p>
+      </div>
+      {% endfor %}
+      {% if textiles|length == 0 %}
+      <p>No images found in <code>static/gallery/</code>.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

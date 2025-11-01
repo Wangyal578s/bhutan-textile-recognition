@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+.env/
+*.env
+
+# OS files
+.DS_Store
+
+# PyTorch models
+*.pth
+*.pt
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Cache
+*.log
+*.tmp
+*.bak
