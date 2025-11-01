@@ -1,25 +1,28 @@
-# Python
+# Python cache and bytecode
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 
-# Virtual environment
+# Virtual environments
 venv/
 .env/
 *.env
 
-# OS files
+# OS / Editor files
 .DS_Store
+*.swp
+*.swo
 
-# PyTorch models
+# PyTorch and ML models (ignore all except main one)
 *.pth
 *.pt
+!bkt.pth  # keep this model file tracked
 
 # Jupyter
 .ipynb_checkpoints/
 
-# Cache
+# Logs / Temp / Backup files
 *.log
 *.tmp
 *.bak
